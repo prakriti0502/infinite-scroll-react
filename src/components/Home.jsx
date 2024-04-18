@@ -11,22 +11,23 @@ const Home = () => {
             `https://jsonplaceholder.typicode.com/posts?_limit=9&_page=${page}`
         );
         const data = await res.json();
-        console.log(data);
+        console.log("data got is ",data);
         setCard((prev)=>[...prev,...data]);
         setLoading(false);
     }
 
     useEffect(()=>{
       getCardData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[page]);
 
     const handleInfiniteScroll = () => {
       // returns the height of the entire document, in pixels.
-      console.log("scroll height (entire doc) is ",document.documentElement.scrollHeight);
+      // console.log("scroll height (entire doc) is ",document.documentElement.scrollHeight);
       // returns the inner height of the window (the height of the browser window's viewport), in pixels.
-      console.log("inner height (viewport) is ",window.innerHeight);
+      // console.log("inner height (viewport) is ",window.innerHeight);
       // returns the number of pixels that the document has been scrolled vertically.
-      console.log("scroll top (scrolled vertically) ", document.documentElement.scrollTop);
+      // console.log("scroll top (scrolled vertically) ", document.documentElement.scrollTop);
       try {
         if(document.documentElement.scrollTop + window.innerHeight + 1 >= document.documentElement.scrollHeight) {
           setLoading(true);
